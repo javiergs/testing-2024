@@ -68,7 +68,6 @@ jobs:
     #      name: my-macos-app
     #      path: MyApp.zip 
 
-
       - name: Create GitHub Release
         uses: actions/create-release@v1
         with:
