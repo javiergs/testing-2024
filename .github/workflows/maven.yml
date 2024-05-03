@@ -44,7 +44,7 @@ jobs:
       - name: Step 07. Create macOS App with JPackage
         run: |
           jpackage --input target \
-                   --name MyApp.app \
+                   --name MyApp \
                    --main-jar testing-2024-1.0-SNAPSHOT.jar \
                    --main-class javiergs.main \
                    --type app-image \
