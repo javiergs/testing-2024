@@ -69,6 +69,12 @@ jobs:
     #      name: my-macos-app
     #      path: MyApp.zip 
 
+      - name: Generate Unique Tag
+        id: generate_tag
+        run: |
+          UNIQUE_TAG="v1.0.0-$(date +'%Y%m%d%H%M%S')"  # Generate a unique tag
+          echo "tag_name=$UNIQUE_TAG" >> $GITHUB_ENV  # Set the tag name as an environment variable
+      
 
       - name: Create GitHub Release
         id: create_release  # Assign an ID to this step to reference the release later
@@ -77,8 +83,9 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          tag_name: ${{ github.ref_name }}  # Use the pushed tag name for the release
-          release_name: Release ${{ github.ref_name }}  # Optional: Release title
+          tag_name: ${{ env.tag_name }}  # Use the unique tag name
+          release_name: "Release ${{ env.tag_name }}"
+        
           body: "Description of the release"
           draft: false  # Set to true if you want a draft release
           prerelease: false  # Set to true for a prerelease
