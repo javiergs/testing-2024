@@ -49,7 +49,10 @@ jobs:
                    --main-class javiergs.main \
                    --type app-image \
                    --icon src/main/resources/jgs-icon.png
-                   
+
+      - name: List Application Bundle
+        run: ls -alR MyApp.app  
+        
       - name: Step 08. Just for Fun an LS
         run: ls -al ./
         
