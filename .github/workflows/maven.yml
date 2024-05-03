@@ -22,20 +22,21 @@ jobs:
       - name: Step 02. Build with Maven 
         run: mvn clean package
       
-      - name: Set Executable Permissions
-        run: chmod +x target/testing-2024-1.0-SNAPSHOT.jar 
-      
+
       - name: Step 03. Run tests 
         run: mvn test
         
       - name: Step 04. Deploy
         run: mkdir staging && cp target/*.jar staging  
-    
+
+      - name: Set Executable Permissions
+        run: chmod +x target/testing-2024-1.0-SNAPSHOT.jar 
+        
       - name: Step 05. Upload Artifact
         uses: actions/upload-artifact@v4
         with:
           name: javiergs-app
-          path: staging 
+          path: target/testing-2024-1.0-SNAPSHOT.jar  
       
       - name: Step 06. Just for Fun an LS
         run: ls -al target
