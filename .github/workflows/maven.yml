@@ -39,7 +39,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4      
       - name: Upload JAR to GitHub Release
-        uses: softprops/action-gh-release@v4
+        uses: softprops/action-gh-release@v1
         with:
           upload_url: ${{ github.event.release.upload_url }}
           files: |
