@@ -36,7 +36,7 @@ jobs:
       - name: Create macOS App with JPackage
         run: jpackage --input target 
                       --name MyApp 
-                      --main-jar application.jar 
+                      --main-jar javiergs-app.jar 
                       --type app-image 
                       --icon src/main/resources/jgs-icon.icns
       - name: Upload Artifact
