@@ -32,17 +32,7 @@ jobs:
     - name: Run tests 
       run: mvn test
   
-  publish-jar:
-    needs: build 
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4      
-      - name: Upload JAR to GitHub Release
-        uses: softprops/action-gh-release@v3
-        with:
-          upload_url: ${{ github.event.release.upload_url }}
-          files: |
-            target/*.jar  
-          draft: false  # Set to false to publish immediately
-          overwrite: true  # Optional, allows overwriting files in the release
+    - name: Publish to GitHub Packages Apache Maven
+      run: mvn deploy -s $GITHUB_WORKSPACE/settings.xml
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
