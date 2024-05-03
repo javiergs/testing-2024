@@ -72,7 +72,6 @@ jobs:
       - name: Extract Tag Name
         run: echo "${{ github.ref }}" | cut -d'/' -f3  # Gets the tag name
 
-
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
