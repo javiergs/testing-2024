@@ -21,7 +21,10 @@ jobs:
 
       - name: Step 02. Build with Maven 
         run: mvn clean package
-
+      
+      - name: Set Executable Permissions
+        run: chmod +x target/testing-2024-1.0-SNAPSHOT.jar 
+      
       - name: Step 03. Run tests 
         run: mvn test
         
