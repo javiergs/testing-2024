@@ -44,7 +44,7 @@ jobs:
                    --main-jar testing-2024-1.0-SNAPSHOT.jar \
                    --main-class javiergs.main \
                    --type app-image \
-                   --icon src/main/resources/jgs-icon.png
+                   --icon src/main/resources/jgs-icon.png \
                    --dest target
 
       - name: Step 08. Just for Fun an LS
