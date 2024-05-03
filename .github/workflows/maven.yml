@@ -19,6 +19,12 @@ jobs:
           distribution: 'temurin'
           cache: maven  
 
+      - name: Set Environment Variable
+        run: export ARCH=x86_64 
+
+      - name: Check Architecture
+        run: uname -m
+        
       - name: Step 02. Build with Maven 
         run: mvn clean package
       
@@ -41,11 +47,7 @@ jobs:
       - name: Step 06. Just for Fun an LS
         run: ls -al target
 
-      - name: Set Environment Variable
-        run: export ARCH=x86_64 
 
-      - name: Check Architecture
-        run: uname -m
   
       - name: Step 07. Create macOS App with JPackage
         run: |
