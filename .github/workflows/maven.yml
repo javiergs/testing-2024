@@ -69,16 +69,28 @@ jobs:
     #      name: my-macos-app
     #      path: MyApp.zip 
 
-      - uses: actions/upload-artifact@v3
+      - name: Extract Tag Name
+        run: echo "${{ github.ref }}" | cut -d'/' -f3  # Gets the tag name
+
+
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
         with:
-          name: Package
-          path: staging
-          retention-days: 1
-      - uses: marvinpinto/action-automatic-releases@latest
+         release_name: ${{ steps.version.outputs.version }}
+         tag_name: ${{ github.ref }}
+         body: |
+            Changes in this Release
+            - First Change
+            - Second Change
+         draft: false
+         prerelease: false
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
         with:
-          repo_token: "${{ secrets.YOUR-GITHUB-TOKEN }}"
-          automatic_release_tag: "${{ github.run_number }}"
-          title: "Automated Build ${{ github.run_number }}"
-          prerelease: true
-          files: staging/*.jar
+          name: my-artifact
+          path: target/testing-2024-1.0-SNAPSHOT.jar 
           
