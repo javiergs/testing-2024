@@ -34,11 +34,11 @@ jobs:
           path: staging 
 
       - name: Deploy
-        run: mkdir staging && cp target/*.jar staging  # Creates the directory and copies the JARs
+        run: cp target/*.jar staging  # Creates the directory and copies the JARs
       - name: Create macOS App with JPackage
         run: jpackage --input target 
                       --name MyApp 
-                      --main-jar javiergs-app
+                      --main-jar my-application.jar
                       --type app-image 
                       --icon src/main/resources/jgs-icon.icns
       - name: Upload Artifact
