@@ -25,9 +25,6 @@ jobs:
 
       - name: Step 03. Run tests 
         run: mvn test
-
-      - name: Set Environment Variable
-        run: export ARCH=x86_64 
   
       - name: Step 04. Deploy
         run: mkdir staging && cp target/*.jar staging  
@@ -43,7 +40,13 @@ jobs:
       
       - name: Step 06. Just for Fun an LS
         run: ls -al target
-      
+
+      - name: Set Environment Variable
+        run: export ARCH=x86_64 
+
+      - name: Check Architecture
+        run: uname -m
+  
       - name: Step 07. Create macOS App with JPackage
         run: |
           jpackage --input target \
@@ -52,8 +55,6 @@ jobs:
                    --main-class javiergs.main \
                    --type app-image \
                    --icon src/main/resources/jgs-icon.icns
-
-
         
       - name: Step 08. Just for Fun an LS
         run: ls -al ./
