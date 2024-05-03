@@ -70,10 +70,10 @@ jobs:
     #      path: MyApp.zip 
 
       - name: Extract Tag Name
-        run: echo "${{ github.ref }}" | cut -d'/' -f3  # Gets the tag name
+        run: echo "${{ github.ref }}" | cut -d'/' -f3 >> $T 
 
       - name: Extract Branch Name
-        run: echo "${{ github.ref }}" | cut -d'/' -f3 
+        run: echo "${{ github.ref }}" | cut -d'/' -f3 >> $B
   
       - name: Create Release
         id: create_release
@@ -82,7 +82,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
         with:
          release_name: ${{ steps.version.outputs.version }}
-         tag_name: "1"
+         tag_name: ${{T}}
          body: |
             Changes in this Release
             - First Change
