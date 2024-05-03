@@ -80,7 +80,6 @@ jobs:
             - Describe the changes in this release
           draft: false  # Set to true if you want to create a draft release
           prerelease: false  # Set to true for prerelease versions
-          generate_release_notes: false  # Set to true to generate release notes automatically
       
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
