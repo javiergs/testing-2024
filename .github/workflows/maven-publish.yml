@@ -18,6 +18,6 @@ jobs:
         uses: actions/upload-release-asset@v1
         with:
           upload_url: ${{ github.event.release.upload_url }}  # The upload URL from the created release
-          asset_path: "target/my-artifact.jar"  # Path to the JAR file
-          asset_name: "my-artifact.jar"  # Name of the JAR file on the release
+          asset_path: "target/testing-2024-1.0-SNAPSHOT"  # Path to the JAR file
+          asset_name: "testing-2024-1.0-SNAPSHOT"  # Name of the JAR file on the release
           asset_content_type: "application/java-archive"  # MIME type for JAR files
