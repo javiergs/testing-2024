@@ -72,6 +72,7 @@ jobs:
       - name: Create GitHub Release
         uses: actions/create-release@v1
         with:
+          token: ${{ secrets.GITHUB_TOKEN }}  # Provide the GitHub token
           tag_name: ${{ github.ref_name }}  # Use the pushed tag as the release name
           release_name: Release ${{ github.ref_name }}  # Optional: name for the release
           body: |
