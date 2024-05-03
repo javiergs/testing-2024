@@ -40,7 +40,7 @@ jobs:
       - name: Step 07. Create macOS App with JPackage
         run: |
           jpackage --input target \
-                   --name MyApp \
+                   --name MyApp.app \
                    --main-jar testing-2024-1.0-SNAPSHOT.jar \
                    --main-class javiergs.main \
                    --type app-image \
@@ -53,4 +53,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: my-macos-app
-          path: ./MyApp
+          path: ./MyApp.app
