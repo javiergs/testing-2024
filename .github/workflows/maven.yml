@@ -33,6 +33,8 @@ jobs:
           name: javiergs-app
           path: staging 
 
+      - name: Deploy
+        run: mkdir staging && cp target/*.jar staging  # Creates the directory and copies the JARs
       - name: Create macOS App with JPackage
         run: jpackage --input target 
                       --name MyApp 
