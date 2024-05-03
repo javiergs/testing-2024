@@ -42,7 +42,7 @@ jobs:
                       --name MyApp 
                       --main-jar testing-2024-1.0-SNAPSHOT.jar
                       --type app-image 
-                      --icon src/main/resources/jgs-icon.icns
+                      --icon src/main/resources/jgs-icon.png
 
       - name: Step 08. Just for Fun an LS
         run: ls -al target
