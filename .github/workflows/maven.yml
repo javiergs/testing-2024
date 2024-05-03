@@ -69,7 +69,6 @@ jobs:
     #      name: my-macos-app
     #      path: MyApp.zip 
 
-      - run: mkdir staging && mv target/*.jar && cp target/*.jar staging
       - uses: actions/upload-artifact@v3
         with:
           name: Package
