@@ -13,12 +13,11 @@ on:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
-
+  release:
+    types: [published]  
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
     - name: Checkout Code
       uses: actions/checkout@v4
@@ -33,11 +32,17 @@ jobs:
     - name: Run tests 
       run: mvn test
   
-  publish:    
+  publish-jar:
+    needs: build 
     runs-on: ubuntu-latest
     steps:
-    - run: mkdir staging && cp target/*.jar staging
-    - uses: actions/upload-artifact@v4
-      with:
-        name: Package
-        path: staging
+      - name: Checkout code
+        uses: actions/checkout@v4      
+      - name: Upload JAR to GitHub Release
+        uses: softprops/action-gh-release@v4
+        with:
+          upload_url: ${{ github.event.release.upload_url }}
+          files: |
+            target/*.jar  
+          draft: false  # Set to false to publish immediately
+          overwrite: true  # Optional, allows overwriting files in the release
