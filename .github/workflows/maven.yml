@@ -27,9 +27,16 @@ jobs:
         
       - name: Deploy
         run: mkdir staging && cp target/*.jar staging  # Creates the directory and copies the JARs
-      
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
           name: javiergs-app
           path: staging 
+
+      - name: Create macOS App with JPackage
+        run: jpackage --input target --name MyApp --main-jar my-application.jar --type app-image --icon path/to/icon.icns
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: my-macos-app
+          path: MyApp.app  # This is the generated macOS app bundle
