@@ -34,7 +34,11 @@ jobs:
           path: staging 
 
       - name: Create macOS App with JPackage
-        run: jpackage --input target --name MyApp --main-jar my-application.jar --type app-image --icon path/to/icon.icns
+        run: jpackage --input target 
+                      --name MyApp 
+                      --main-jar application.jar 
+                      --type app-image 
+                      --icon src/main/resources/jgs-icon.icns
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
