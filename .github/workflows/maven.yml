@@ -48,24 +48,42 @@ jobs:
         run: ls -al target
 
 
-  
-      - name: Step 07. Create macOS App with JPackage
-        run: |
-          jpackage --input target \
-                   --name MyApp \
-                   --main-jar testing-2024-1.0-SNAPSHOT.jar \
-                   --main-class javiergs.main \
-                   --type app-image \
-                   --icon src/main/resources/jgs-icon.icns
-        
-      - name: Step 08. Just for Fun an LS
-        run: ls -al ./
+    #  - name: Step 07. Create macOS App with JPackage
+    #    run: |
+    #      jpackage --input target \
+    #               --name MyApp \
+    #               --main-jar testing-2024-1.0-SNAPSHOT.jar \
+    #               --main-class javiergs.main \
+    #               --type app-image \
+    #               --icon src/main/resources/jgs-icon.icns
+    #    
+    #  - name: Step 08. Just for Fun an LS
+    #    run: ls -al ./
 
-      - name: Compress Application Bundle
-        run: zip -r MyApp.zip MyApp.app 
+    # - name: Compress Application Bundle
+    #    run: zip -r MyApp.zip MyApp.app 
   
-      - name: Step 09. Upload macOS Artifact
-        uses: actions/upload-artifact@v4
+    #  - name: Step 09. Upload macOS Artifact
+    #    uses: actions/upload-artifact@v4
+    #    with:
+    #      name: my-macos-app
+    #      path: MyApp.zip 
+
+
+      - name: Create GitHub Release
+        uses: actions/create-release@v3
         with:
-          name: my-macos-app
-          path: MyApp.zip 
+          tag_name: ${{ github.ref_name }}  # Use the pushed tag as the release name
+          release_name: Release ${{ github.ref_name }}  # Optional: name for the release
+          body: |
+            ## What's new
+            - Describe the changes in this release
+          draft: false  # Set to true if you want to create a draft release
+          prerelease: false  # Set to true for prerelease versions
+          generate_release_notes: false  # Set to true to generate release notes automatically
+      
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: my-artifact
+          path: target/my-artifact.jar  # Replace with your build artifact's path
