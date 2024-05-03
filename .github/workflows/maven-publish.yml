@@ -40,5 +40,3 @@ jobs:
         asset_path: target/testing-2024-1.0-SNAPSHOT.jar  # Replace with your artifact's path
         asset_name: my-artifact.jar  # Name of the artifact on the release
         asset_content_type: application/java-archive  # Set the correct MIME type
-    env:
-       GITHUB_TOKEN: ${{ github.token }}  
