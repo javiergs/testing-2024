@@ -70,18 +70,6 @@ jobs:
     #      path: MyApp.zip 
 
 
-
-  create-release:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v3
-      
-      - name: Build Artifacts
-        run: |
-          # Build or generate the artifacts
-          mvn clean package  # Example for Maven projects
-      
       - name: Create GitHub Release
         id: create_release  # Assign an ID to this step to reference the release later
         uses: actions/create-release@v1
