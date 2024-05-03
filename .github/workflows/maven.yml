@@ -54,9 +54,12 @@ jobs:
         
       - name: Step 08. Just for Fun an LS
         run: ls -al ./
-        
+
+      - name: Compress Application Bundle
+        run: zip -r MyApp.zip MyApp.app 
+  
       - name: Step 09. Upload macOS Artifact
         uses: actions/upload-artifact@v4
         with:
           name: my-macos-app
-          path: ./MyApp.app
+          path: MyApp.zip 
