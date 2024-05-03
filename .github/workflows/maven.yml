@@ -68,20 +68,27 @@ jobs:
     #      name: my-macos-app
     #      path: MyApp.zip 
 
-      - name: Create GitHub Release
+
+
+      - name: Create Release
+        id: create_release
         uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}  # Provide the GitHub token
-          tag_name: ${{ github.ref_name }}  # Use the pushed tag as the release name
-          release_name: Release ${{ github.ref_name }}  # Optional: name for the release
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
           body: |
-            ## What's new
-            - Describe the changes in this release
-          draft: false  # Set to true if you want to create a draft release
-          prerelease: false  # Set to true for prerelease versions
-      
+            Changes in this Release
+            - First Change
+            - Second Change
+          draft: false
+          prerelease: false
+
+  
       - name: Upload Artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: my-artifact
-          path: target/my-artifact.jar  # Replace with your build artifact's path
+          path: target/testing-2024-1.0-SNAPSHOT.jar 
+
