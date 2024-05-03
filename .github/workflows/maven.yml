@@ -69,12 +69,7 @@ jobs:
     #      name: my-macos-app
     #      path: MyApp.zip 
 
-      - name: Extract Tag Name
-        run: echo "${{ github.ref }}" | cut -d'/' -f3 >> $T 
 
-      - name: Extract Branch Name
-        run: echo "${{ github.ref }}" | cut -d'/' -f3 >> $B
-  
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
@@ -82,7 +77,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
         with:
          release_name: ${{ steps.version.outputs.version }}
-         tag_name: ${{T}}
+         tag_name: "1"
          body: |
             Changes in this Release
             - First Change
