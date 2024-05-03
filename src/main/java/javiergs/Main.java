@@ -8,3 +8,4 @@ public class Main {
     return Math.sqrt(Math.pow(a, 2) + Math.pow(b, 2));
   }
 }
+
