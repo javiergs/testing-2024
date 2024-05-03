@@ -44,9 +44,8 @@ jobs:
                    --main-jar testing-2024-1.0-SNAPSHOT.jar \
                    --main-class javiergs.main \
                    --type app-image \
-                   --icon src/main/resources/jgs-icon.png \
-                   --dest target
-
+                   --icon src/main/resources/jgs-icon.png
+                   
       - name: Step 08. Just for Fun an LS
         run: ls -al ./
         
@@ -54,4 +53,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: my-macos-app
-          path: target/MyApp.app
+          path: ./MyApp.app
