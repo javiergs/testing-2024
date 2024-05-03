@@ -32,7 +32,8 @@ jobs:
         with:
           name: javiergs-app
           path: staging 
-
+      - name: List Target Directory
+        run: ls -al target
       - name: Deploy
         run: cp target/*.jar staging  # Creates the directory and copies the JARs
       - name: Create macOS App with JPackage
