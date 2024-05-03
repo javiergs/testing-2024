@@ -32,7 +32,11 @@ jobs:
     - name: Run tests 
       run: mvn test
   
-    - name: Publish to GitHub Packages Apache Maven
-      run: mvn deploy 
-      env:
-        GITHUB_TOKEN: ${{ github.token }}
+    - name: Publish 
+      run: mvn --batch-mode --update-snapshots verify
+    - name: This Deploy
+      run: mkdir staging && cp target/*.jar staging
+    - uses: actions/upload-artifact@v4
+      with:
+        name: Package
+        path: staging
